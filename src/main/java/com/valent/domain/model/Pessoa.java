@@ -1,14 +1,11 @@
 package com.valent.domain.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -21,17 +18,16 @@ public class Pessoa {
 
 	@NotBlank
 	private String nome;
-	
+
 	private String email;
 
-	@OneToMany
-	private List<Telefone> telefones;
+	private String telefone;
 
-	public Long getId() {
+	public Long getIdPessoa() {
 		return idPessoa;
 	}
 
-	public void setId(Long idPessoa) {
+	public void setIdPessoa(Long idPessoa) {
 		this.idPessoa = idPessoa;
 	}
 
@@ -51,12 +47,12 @@ public class Pessoa {
 		this.email = email;
 	}
 
-	public List<Telefone> getTelefones() {
-		return telefones;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 }

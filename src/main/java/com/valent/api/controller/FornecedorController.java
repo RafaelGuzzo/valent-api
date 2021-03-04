@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.valent.domain.exception.EntidadeNaoEncontradaException;
 import com.valent.domain.model.Fornecedor;
 import com.valent.domain.repository.FornecedorRepository;
 
@@ -31,8 +32,10 @@ public class FornecedorController {
 
 	@GetMapping("/{idFornecedor}")
 	public ResponseEntity<Fornecedor> buscar(@PathVariable Long idFornecedor) {
-		Optional<Fornecedor> fornecedor = fornecedorRepository.findById(idFornecedor);
-		return fornecedor.isPresent() ? ResponseEntity.ok(fornecedor.get()) : ResponseEntity.notFound().build();
+		Fornecedor fornecedor = fornecedorRepository.findById(idFornecedor)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Fornecedor não encontrado!"));
+
+		return ResponseEntity.ok(fornecedor);
 	}
 
 	@PostMapping

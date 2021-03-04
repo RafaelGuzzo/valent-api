@@ -10,7 +10,7 @@ import com.valent.domain.model.Participante;
 import com.valent.domain.repository.ParticipanteRepository;
 
 @RestController
-@RequestMapping("/participante")
+@RequestMapping("/participantes")
 public class ParticipanteController {
 
 	@Autowired

@@ -1,6 +1,7 @@
 package com.valent.domain.model;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,10 +28,12 @@ public class Evento {
 	private OffsetDateTime data;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
-	private List<Participante> participantes;
+	private List<Participante> participantes = new ArrayList<>();;
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "evento")
-	private List<Fornecedor> fornecedores;
+	private List<Fornecedor> fornecedores = new ArrayList<>();
+
+	private String mensagemPadrao;
 
 	public Long getId() {
 		return Id;
@@ -70,6 +73,14 @@ public class Evento {
 
 	public void setFornecedores(List<Fornecedor> fornecedores) {
 		this.fornecedores = fornecedores;
+	}
+
+	public String getMensagemPadrao() {
+		return mensagemPadrao;
+	}
+
+	public void setMensagemPadrao(String mensagemPadrao) {
+		this.mensagemPadrao = mensagemPadrao;
 	}
 
 }

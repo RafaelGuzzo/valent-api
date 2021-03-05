@@ -30,7 +30,7 @@ public class Evento {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
 	private List<Participante> participantes = new ArrayList<>();;
 
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "evento")
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "eventos")
 	private List<Fornecedor> fornecedores = new ArrayList<>();
 
 	private String mensagemPadrao;

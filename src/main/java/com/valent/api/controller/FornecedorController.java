@@ -1,7 +1,6 @@
 package com.valent.api.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.valent.domain.exception.EntidadeNaoEncontradaException;
+import com.valent.api.model.FornecedorModel;
 import com.valent.domain.model.Fornecedor;
 import com.valent.domain.repository.FornecedorRepository;
+import com.valent.domain.service.FornecedorService;
 
 @RestController
 @RequestMapping("/fornecedores")
@@ -25,17 +25,18 @@ public class FornecedorController {
 	@Autowired
 	private FornecedorRepository fornecedorRepository;
 
+	@Autowired
+	private FornecedorService fornecedorService;
+
 	@GetMapping
-	public List<Fornecedor> listar() {
-		return fornecedorRepository.findAll();
+	public List<FornecedorModel> listar() {
+		return fornecedorService.buscarTodos();
 	}
 
 	@GetMapping("/{idFornecedor}")
-	public ResponseEntity<Fornecedor> buscar(@PathVariable Long idFornecedor) {
-		Fornecedor fornecedor = fornecedorRepository.findById(idFornecedor)
-				.orElseThrow(() -> new EntidadeNaoEncontradaException("Fornecedor não encontrado!"));
+	public ResponseEntity<FornecedorModel> buscar(@PathVariable Long idFornecedor) {
 
-		return ResponseEntity.ok(fornecedor);
+		return ResponseEntity.ok(fornecedorService.buscarPorId(idFornecedor));
 	}
 
 	@PostMapping

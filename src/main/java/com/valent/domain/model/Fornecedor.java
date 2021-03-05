@@ -21,14 +21,14 @@ public class Fornecedor extends Pessoa {
 	@JoinTable(name ="fornecedor_evento", 
 	joinColumns = @JoinColumn(name = "fornecedor_id"), 
 	inverseJoinColumns = @JoinColumn(name = "evento_id"))
-	private List<Evento> evento;
+	private List<Evento> eventos;
 
-	public List<Evento> getEvento() {
-		return evento;
+	public List<Evento> getEventos() {
+		return eventos;
 	}
 
 	public void addEvento(Evento evento) {
-		this.evento.add(evento);
+		this.eventos.add(evento);
 		evento.getFornecedores().add(this);
 	}
 

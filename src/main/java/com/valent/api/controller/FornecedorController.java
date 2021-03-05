@@ -2,6 +2,8 @@ package com.valent.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,7 +42,7 @@ public class FornecedorController {
 	}
 
 	@PostMapping
-	public Fornecedor adicionar(@RequestBody Fornecedor fornecedor) {
+	public Fornecedor adicionar(@Valid @RequestBody Fornecedor fornecedor) {
 		return fornecedorRepository.save(fornecedor);
 	}
 

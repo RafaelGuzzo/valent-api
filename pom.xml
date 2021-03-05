@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.valente.api</groupId>
 	<artifactId>com.valente.api</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-RELEASE</version>
 	<name>com.valente.api</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

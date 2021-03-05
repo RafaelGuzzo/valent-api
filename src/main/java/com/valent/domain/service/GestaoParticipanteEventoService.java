@@ -3,6 +3,7 @@ package com.valent.domain.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.valent.domain.exception.EntidadeNaoEncontradaException;
 import com.valent.domain.model.Evento;
 import com.valent.domain.model.Fornecedor;
 import com.valent.domain.model.Participante;
@@ -23,14 +24,15 @@ public class GestaoParticipanteEventoService {
 	private EventoRepository eventoRepository;
 
 	public Evento adicionarParticipanteEvento(Long idEvento, Participante participante) {
-		Evento evento = eventoRepository.findById(idEvento).orElse(null);
-		// TODO alterar para classe que trata execeções
+		Evento evento = eventoRepository.findById(idEvento)
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Evento não encontrado!"));
+
 		participante.setEvento(evento);
 		return participanteRepository.save(participante).getEvento();
 	}
 
 	public void removerParticipanteEvento(Long idEvento, Long idParticipante) {
-		//Evento evento = eventoRepository.findById(idEvento).orElse(null);
+		// Evento evento = eventoRepository.findById(idEvento).orElse(null);
 		participanteRepository.deleteById(idParticipante);
 	}
 
